@@ -1,0 +1,16 @@
+:root {
+    /* === .rotate-date box === */
+    --date-letter-spacing: -0.08em;
+    --date-text-size: 24px;
+    --date-text-line: 29px;
+    --date-small-size: 10px;
+    --date-small-line: 12px;
+    /* === end .rotate-date box === */
+
+    /* === .rotate-circle === */
+    --circle-img: url('../assets/img/circle-sm.svg');
+    --circle-img-active: url('../assets/img/circle.svg');
+    --circle-width: 97px;
+    --circle-height: 97px;
+    /* === end .rotate-circle === */
+}

@@ -1,0 +1,24 @@
+.rotate-slider {
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+
+    &-wrapper {
+        width: 100%;
+        padding-top: 100%;
+        border-radius: 50%;
+        position: relative;
+    }
+
+    &-initialized &-wrapper,
+    &-initialized &-item {
+        transition: transform .25s;
+    }
+
+    &-item {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+    }
+}

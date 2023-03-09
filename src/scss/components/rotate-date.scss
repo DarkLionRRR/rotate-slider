@@ -1,0 +1,50 @@
+#rotateDate {
+    max-width: 500px;
+    max-height: 500px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+
+    position: absolute;
+    top: 200px;
+    left: 0;
+    width: 100%;
+
+    @media (max-width: 574px) {
+        transform: translateX(-50%) translateY(50%) rotate(-90deg);
+        left: 50%;
+        top: auto;
+        bottom: 0;
+        max-width: 208px;
+        max-height: 208px;
+    }
+}
+
+.rotate-date {
+    width: inherit;
+
+    &-text {
+        font-size: var(--date-text-size);
+        line-height: var(--date-text-line);
+        letter-spacing: var(--date-letter-spacing);
+        font-weight: 300;
+        color: #fff;
+
+        opacity: .3;
+        transform: scale(.5);
+        transition: transform .25s, opacity .25s;
+    }
+
+    .rotate-slider-item-active &-text {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    &-small {
+        display: block;
+        font-size: var(--date-small-size);
+        line-height: var(--date-small-line);
+        letter-spacing: 0;
+    }
+
+    
+}

@@ -1,0 +1,65 @@
+#rotateSlide {
+    max-width: 1250px;
+    max-height: 1250px;
+    transform: translateX(-35%);
+    border-radius: 50%;
+
+    position: absolute;
+    top: -175px;
+    left: 0;
+    width: 100%;
+
+    @media (max-width: 574px) {
+        position: relative;
+        top: auto;
+        left: auto;
+        border-radius: 0;
+        transform: translateX(0);
+        max-width: 100%;
+        max-height: none;
+    }
+}
+
+.rotate-custom {
+    width: inherit;
+
+    &-card {
+        width: 862px;
+        padding: 70px 60px;
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        border: 1px solid #273776;
+        transform: scale(.75);
+        opacity: .3;
+        transition: transform .25s, opacity .25s;
+    }
+    .rotate-slider-item-active &-card {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    @media (max-width: 574px) {
+        &-card {
+            width: 100%;
+            transform: scale(1);
+            opacity: 1;
+            padding: 21px 17px;
+        }
+        & {
+            padding-top: 0;
+        }
+        .rotate-slider-item {
+            top: 0;
+            left: 0;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility .25s, opacity .25s;
+            width: 100%;
+        }
+        .rotate-slider-item-active {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}

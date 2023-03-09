@@ -1,0 +1,54 @@
+// === DEMO ===
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 1;
+    background-color: #151618;
+    color: #FFFFFF;
+}
+
+// === рабочая зона ===
+@import 'var';
+
+.container {
+    width: 71%;
+    max-width: 1068px;
+    padding: 10px;
+    margin: 0 auto;
+
+    @media (max-width: 574px) {
+        width: 100%;    
+    }
+}
+.headline {
+    font-weight: 300;
+    font-size: 64px;
+    line-height: 84px;
+
+    @media (max-width: 574px) {
+        font-size: 32px;
+        line-height: 130%;
+    }
+}
+.rotate-slider-container {
+    overflow: hidden;
+    padding: 70px 0;
+    position: relative;
+    min-height: 958px;
+
+    @media (max-width: 574px) {
+        padding: 40px 10px;
+        min-height: 75vh;
+    }
+}
+
+@import 'components/slider';
+@import 'components/rotate-circle';
+@import 'components/rotate-date';

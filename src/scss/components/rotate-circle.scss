@@ -1,0 +1,44 @@
+#rotateCircle {
+    max-width: 625px;
+    max-height: 625px;
+    transform: translateX(-50%);
+    border: 1px solid rgba(#4863DE, .2);
+    border-radius: 50%;
+
+    position: absolute;
+    top: 140px;
+    left: 0;
+    width: 100%;
+
+    @media (max-width: 574px) {
+        transform: translateX(-50%) translateY(50%) rotate(-90deg);
+        left: 50%;
+        top: auto;
+        bottom: 0;
+        max-width: 308px;
+        max-height: 308px;
+    }
+}
+
+.rotate-circle {
+    width: inherit;
+
+    &-icon {
+        background: var(--circle-img) no-repeat;
+        background-position: center;
+        background-size: contain;
+    
+        width: var(--circle-width);
+        height: var(--circle-height);
+        display: block;
+        transform: scale(.25);
+        transition: transform .25s;
+    }
+
+    .rotate-slider-item-active &-icon {
+        transform: scale(1);
+        background: var(--circle-img-active) no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+}
