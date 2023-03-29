@@ -48,6 +48,8 @@ const slider = new RotateSlider('#rotateSlide', {
     direction: 'horizontal',
     effect: 'fade',
     thumb: slider2,
+    scroll: false,
+    drag: true
 })
 ```
 
@@ -59,6 +61,8 @@ const slider = new RotateSlider('#rotateSlide', {
 - `effect ('fade'|null)` - для переключения плавного пролистывания
 - `direction ('horizontal'|'vertical'|null)` - вращение по вертикали/горизонтале
 - `thumb (RotateSlider object | null)` - синхронизация с другим слайдером
+- `scroll (bool | null)` - режим скролла
+- `drag (bool | null)` - режим перетаскивания
 
 #### thumb
 Принцип работы следующий: передается ТОЛЬКО один экземпляр RotateSlider (экземпляр ДОЛЖЕН быть уже объявлен и инициализирован). Далее, при инициализации текущего экземпляра формируется 2-сторонняя связь между слайдерами. При срабатывании триггера одного из слайдеров, отрабатывают оба.

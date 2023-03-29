@@ -10,6 +10,10 @@ class RotateSlider {
     #supportPassive = false
     #wheelOpt
     #x = null
+    #cursorStart = 0
+    #isDrag = false
+    #bindEnableDrag = this.#enableDrag.bind(this)
+    #bindDragTrigger = this.#dragTrigger.bind(this)
 
     constructor(boxSelector, options = {}) {
         this.boxSelector = boxSelector
@@ -37,6 +41,9 @@ class RotateSlider {
 
         this.thumbParent = null
         this.thumbParentActive = false
+
+        this.scroll = options.scroll ?? true
+        this.drag = options.drag ?? true
 
         this.init()
     }
@@ -117,7 +124,7 @@ class RotateSlider {
             return
 
         const delta = ev.deltaY;
-        (delta > 0)
+        (delta < 0)
             ? this.next()
             : this.prev()
 
@@ -166,6 +173,34 @@ class RotateSlider {
         this.$wrapper.style.transform = `rotate(${rotate}deg)`
     }
 
+    #getCursorStartPosition(event) {
+        this.#cursorStart = event.clientY
+        document.addEventListener('mousemove', this.#bindEnableDrag)
+        this.$slider.addEventListener('mouseup', this.#bindDragTrigger)
+    }
+
+    #enableDrag(event) {
+        this.#isDrag = true
+    }
+
+    #dragTrigger(event) {
+        document.removeEventListener('mousemove', this.#bindEnableDrag)
+
+        if (!this.#isDrag) {
+            return false
+        }
+
+        (event.clientY < this.#cursorStart)
+            ? this.prev()
+            : this.next()
+
+        this.#x = null;
+        this.thumbActive = false
+        this.#isDrag = false
+
+        this.$slider.removeEventListener('mouseup', this.#bindDragTrigger)
+    }
+
     init() {
         if (typeof this.boxSelector !== 'string' || this.boxSelector === '')
             throw new RotateSliderError('Не указан селектор.')
@@ -182,14 +217,23 @@ class RotateSlider {
 
         this.#wheelOpt = this.#supportPassive ? { passive: false } : false;
 
-        this.$wrapper.addEventListener('wheel', this.#scrollTrigger.bind(this));
+        this.scroll && this.$wrapper.addEventListener('wheel', this.#scrollTrigger.bind(this));
         this.$wrapper.addEventListener('touchstart', this.#getTouch.bind(this));
         this.$wrapper.addEventListener('touchmove', this.#touchTrigger.bind(this));
 
-        this.$slider.addEventListener('mousemove', this.#disableWindowScroll.bind(this))
-        this.$slider.addEventListener('mouseout', this.#enableWindowScroll.bind(this))
+        if (this.scroll) {
+            this.$slider.addEventListener('mousemove', this.#disableWindowScroll.bind(this))
+            this.$slider.addEventListener('mouseout', this.#enableWindowScroll.bind(this))
+        }
+
         this.$slider.addEventListener('touchstart', this.#disableWindowScroll.bind(this))
         this.$slider.addEventListener('touchend', this.#enableWindowScroll.bind(this))
+
+        if (this.drag) {
+            this.$slider.style.cursor = 'grab'
+            this.$slider.style.userSelect = 'none'
+            this.$slider.addEventListener('mousedown', this.#getCursorStartPosition.bind(this))
+        }
 
         if (this.thumb)
             this.thumb.thumbParent = this

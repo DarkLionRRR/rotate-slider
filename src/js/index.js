@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // плашки с текстом
         const sliderOptions = {
             startSlide: 2,
+            scroll: false,
         }
 
         if (document.documentElement.clientWidth < 575)
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const circleOptions = {
             startSlide: 2,
             thumb: slider,
+            scroll: false,
         }
 
         if (document.documentElement.clientWidth < 575)
@@ -29,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const dateOptions = {
             startSlide: 2,
             thumb: circleSlider,
+            scroll: false,
         }
 
         if (document.documentElement.clientWidth < 575)
